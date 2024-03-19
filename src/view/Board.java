@@ -113,31 +113,25 @@ public class Board extends JPanel {
 
 	}
 
-	/*public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		for (int r = 0; r < rows; r++) {
+		for (int r = 0; r < rows; r++)
 			for (int c = 0; c < cols; c++) {
 				g2d.setColor((c + r) % 2 == 0 ? Color.CYAN : Color.MAGENTA);
 				g2d.fillRect(c * titleSize, r * titleSize, titleSize, titleSize);
-
 			}
-			for (Piece piece : piecesList) {
-				piece.paint(g2d);
+		if(selectedPiece == null)
+		for (int r = 0; r < rows; r++)
+			for (int c = 0; c < cols; c++) {
+				if(isValidMove(new Move(this, selectedPiece, c, r))) {
+					g2d.setColor(new Color(68,108,57,190));
+					g2d.fillRect(c*titleSize, r*titleSize, titleSize, titleSize);
+				}
 			}
+		
+		for (Piece piece : piecesList) {
+			piece.paint(g2d);
 		}
-	}*/
-	public void paintComponent(Graphics g) {
-	    super.paintComponent(g); // Gọi phương thức này trước
-	    Graphics2D g2d = (Graphics2D) g;
-	    for (int r = 0; r < rows; r++) {
-	        for (int c = 0; c < cols; c++) {
-	            g2d.setColor((c + r) % 2 == 0 ? Color.CYAN : Color.MAGENTA);
-	            g2d.fillRect(c * titleSize, r * titleSize, titleSize, titleSize);
-	        }
-	    }
-	    // Vẽ các quân cờ sau khi vẽ các ô vuông
-	    for (Piece piece : piecesList) {
-	        piece.paint(g2d);
-	    }
 	}
+
 }
